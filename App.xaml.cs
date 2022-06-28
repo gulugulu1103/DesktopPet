@@ -1,5 +1,6 @@
 ﻿using DesktopPet.Views;
 using Prism.Ioc;
+using Prism.Unity;
 using System.Windows;
 
 namespace DesktopPet
@@ -7,7 +8,7 @@ namespace DesktopPet
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App
+    public partial class App : PrismApplication
     {
         protected override Window CreateShell()
         {
