@@ -18,10 +18,5 @@ namespace DesktopPet.Views
         {
             DragMove();
         }
-
-        private void CloseButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            ;
-        }
     }
 }

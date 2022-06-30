@@ -4,36 +4,66 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:prop ="clr-namespace:DesktopPet.Properties"
         xmlns:local="clr-namespace:DesktopPet"
+        xmlns:services="clr-namespace:DesktopPet.Services"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="260" Width="200"
-        Background="Transparent" Icon="pack://application:,,,/Resources/Icon.png"
+        Background="Transparent" Icon="/Views/Resources/Icons/Icon.png"
         WindowStyle="None" ResizeMode="NoResize" Topmost="True">
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="-1" />
     </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <services:StringToImgConverter x:Key="S2I"/>
+        <Style x:Key="ExitButtonStyle" BasedOn="{StaticResource RoundButtonStyle}" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="HotPink"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CharactersButtonStyle" BasedOn="{StaticResource RoundButtonStyle}" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="LightBlue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <DrawingImage x:Key="CharactersButtonImg">
+            <DrawingImage.Drawing>
+                <DrawingGroup ClipGeometry="M0,0 V1024 H1024 V0 H0 Z">
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M583.998674,481.547556C641.997932,455.147894 678.897459,397.948626 678.897459,334.449439 678.897459,244.650588 610.498335,180.051415 520.499487,180.051415 430.500639,180.051415 361.501522,245.25058 361.501522,334.949432 361.501522,400.548592 399.601034,454.447902 460.200259,480.047575 486.599921,491.34743 540.299234,496.747361 583.998674,481.547556z M446.600433,537.846835C443.300475,536.746849 439.600523,536.046858 436.300564,534.646876 356.001592,500.847309 299.802311,422.348313 299.802312,335.449426 299.802312,216.450949 392.201129,115.752238 520.199491,115.752238 650.897818,115.752238 740.59667,216.150953 740.596669,335.049431 740.596669,419.248353 687.197353,497.047357 610.398336,532.146908 550.6991,558.146575 491.199862,552.646646 446.600433,537.846835z M202.403558,926.641859C173.503928,926.54186 143.504312,913.542027 128.304507,889.642332 113.604695,866.542628 115.404672,834.143042 127.004524,809.443359 167.304008,723.44446 272.802658,578.646313 526.999404,574.746363 788.396058,569.946424 883.494841,725.044439 916.894413,817.443256 925.6943,841.742945 927.094282,863.842662 912.594468,890.342323 895.494687,917.841971 865.895066,924.541885 838.495416,924.541885L772.196265,924.541885C757.496453,924.541885 745.796603,909.542077 745.796603,894.842266 745.796603,880.142455 757.796449,866.942623 772.396262,866.942623L840.295393,866.942623C850.495262,866.942623 855.795195,866.742626 861.395123,858.842726 864.295086,854.742778 867.695042,845.642895 863.795092,834.943032 828.895539,738.444267 734.896742,633.345612 525.399424,633.345613 319.50206,633.345613 232.303176,738.844263 187.003756,826.643139 183.103806,834.943033 182.303816,846.942879 187.303752,854.64278 192.703683,863.142671 198.803605,866.842624 209.403469,866.842624L660.197699,866.842624C674.897511,866.842624 687.897344,881.442437 687.897344,896.142249 687.897344,910.842061 675.897498,926.54186 661.197686,926.54186" />
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <DrawingImage x:Key="CloseButtonImg">
+            <DrawingImage.Drawing>
+                <DrawingGroup ClipGeometry="M0,0 V1024 H1024 V0 H0 Z">
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M548.992,503.744L885.44,167.328A31.968,31.968,0,1,0,840.192,122.08L503.744,458.496 167.328,122.08A31.968,31.968,0,1,0,122.08,167.328L458.496,503.744 122.08,840.16A31.968,31.968,0,1,0,167.328,885.408L503.744,548.992 840.16,885.44A31.968,31.968,0,1,0,885.408,840.192L548.992,503.744z" />
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Opacity="0.7" Grid.Row="0">
-            <Button x:Name="CloseButton" Command="{Binding CloseButtonCommand}" MouseEnter="CloseButton_MouseEnter" Content="{Binding CloseButtonImg}">
-                <Button.Template>
-                    <ControlTemplate>
-                        <Grid>
-                            <Image>
-                                <Image.Source>
-                                    <BitmapImage UriSource="{Binding CloseButtonImg}"/>
-                                </Image.Source>
-                            </Image>
-                        </Grid>
-                    </ControlTemplate>
-                </Button.Template>
+        <StackPanel x:Name="ButtonPanel" Orientation="Horizontal"
+                    VerticalAlignment="Top" Opacity="0.5" Grid.Row="0">
+            <Button x:Name="CharactersButton" Style="{StaticResource CharactersButtonStyle}"
+                    Margin="5,0">
+                <Image Margin = "12" Source="{StaticResource CharactersButtonImg}"/>
+            </Button>
+            <Button x:Name="CloseButton" Command="{Binding CloseButtonCommand}"
+                    Style="{StaticResource ExitButtonStyle}"
+                    Margin="5,0">
+                <Image Margin="13" Source="{StaticResource CloseButtonImg}"/>
             </Button>
         </StackPanel>
         <Grid Height="200" Width="200" VerticalAlignment="Top" Grid.Row="1"
-                  PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown">
-            <Image Source="{Binding Pet.ImageSource}" Stretch="Fill"/>
+              DataContext="{Binding Pet}"
+              PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown">
+            <Image Source="{Binding ImageSource}" Stretch="Fill"/>
         </Grid>
     </Grid>
 </Window>

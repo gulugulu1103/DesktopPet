@@ -63,29 +63,9 @@ namespace DesktopPet.Properties {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        public static byte[] close_0 {
+        public static byte[] Icon1 {
             get {
-                object obj = ResourceManager.GetObject("close_0", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        public static byte[] close_1 {
-            get {
-                object obj = ResourceManager.GetObject("close_1", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        public static byte[] Icon {
-            get {
-                object obj = ResourceManager.GetObject("Icon", resourceCulture);
+                object obj = ResourceManager.GetObject("Icon1", resourceCulture);
                 return ((byte[])(obj));
             }
         }

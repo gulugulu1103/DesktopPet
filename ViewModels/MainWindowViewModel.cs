@@ -1,11 +1,6 @@
 ﻿using DesktopPet.Models;
 using Prism.Commands;
 using Prism.Mvvm;
-using System;
-using System.IO;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace DesktopPet.ViewModels
 {
@@ -18,28 +13,16 @@ namespace DesktopPet.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        private string _closeButtonImg = "/Resources/close_0.png";
-        public string CloseButtonImg
-        {
-            get { return _closeButtonImg; }
-            set { _closeButtonImg = value; this.RaisePropertyChanged(nameof(CloseButtonImg)); }
-        }
-
         public DelegateCommand CloseButtonCommand { get; set; }
         private void CloseButtonCommandExecute()
         {
             System.Environment.Exit(0);
         }
 
-        public DelegateCommand MouseEnterCommand { get; set; }
-        private void MouseEnterCommandExecute()
+        public DelegateCommand CharactersButtonCommand { get; set; }
+        private void CharactersButtonCommandExecute()
         {
-            this.CloseButtonImg = "/Resources/close_1.png";
-        }
-        public DelegateCommand MouseLeaveCommand { get; set; }
-        private void MouseLeaveCommandExecute()
-        {
-            this.CloseButtonImg = "/Resources/close_0.png";
+            
         }
 
         private Pet _pet;
@@ -49,11 +32,9 @@ namespace DesktopPet.ViewModels
             set { _pet = value; this.RaisePropertyChanged(nameof(Pet)); }
         }
 
-        
-
         public MainWindowViewModel()
         {
-
+            this.CloseButtonCommand = new DelegateCommand(this.CharactersButtonCommandExecute);
             this.CloseButtonCommand = new DelegateCommand(this.CloseButtonCommandExecute);
             this.Pet = new Pet();
         }
