@@ -1,4 +1,5 @@
 ﻿using DesktopPet.Models;
+using DesktopPet.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -22,7 +23,8 @@ namespace DesktopPet.ViewModels
         public DelegateCommand CharactersButtonCommand { get; set; }
         private void CharactersButtonCommandExecute()
         {
-            
+            CharactersWindow charactersWindow = new CharactersWindow();
+            charactersWindow.Show();
         }
 
         private Pet _pet;
@@ -34,7 +36,7 @@ namespace DesktopPet.ViewModels
 
         public MainWindowViewModel()
         {
-            this.CloseButtonCommand = new DelegateCommand(this.CharactersButtonCommandExecute);
+            this.CharactersButtonCommand = new DelegateCommand(this.CharactersButtonCommandExecute);
             this.CloseButtonCommand = new DelegateCommand(this.CloseButtonCommandExecute);
             this.Pet = new Pet();
         }

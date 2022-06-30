@@ -4,20 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopPet"
+        xmlns:v="clr-namespace:DesktopPet.Views"
         mc:Ignorable="d"
         Title="WindowTest" Height="450" Width="800">
     <Window.Resources>
-        <Style x:Key="ExitButtonStyle" BasedOn="{StaticResource RoundButtonStyle}" TargetType="{x:Type Button}">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Background" Value="Red"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+        <DrawingImage x:Key="CloseButtonImg">
+            <DrawingImage.Drawing>
+                <DrawingGroup ClipGeometry="M0,0 V1024 H1024 V0 H0 Z">
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M548.992,503.744L885.44,167.328A31.968,31.968,0,1,0,840.192,122.08L503.744,458.496 167.328,122.08A31.968,31.968,0,1,0,122.08,167.328L458.496,503.744 122.08,840.16A31.968,31.968,0,1,0,167.328,885.408L503.744,548.992 840.16,885.44A31.968,31.968,0,1,0,885.408,840.192L548.992,503.744z" />
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
     </Window.Resources>
     <Grid>
-        <Button Style="{StaticResource ExitButtonStyle}">
-            <Image Source="/Views/Resources/Icons/CloseButtonImg.png" />
-        </Button>
+        <v:RoundButton AccentColor="Red" Opacity="0.7">
+            <Image Source="{StaticResource CloseButtonImg}" Margin="10"/>
+        </v:RoundButton>
     </Grid>
 </Window>

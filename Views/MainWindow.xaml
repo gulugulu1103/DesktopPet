@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:prop ="clr-namespace:DesktopPet.Properties"
-        xmlns:local="clr-namespace:DesktopPet"
+        xmlns:local="clr-namespace:DesktopPet.Views"
         xmlns:services="clr-namespace:DesktopPet.Services"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="260" Width="200"
@@ -14,20 +14,6 @@
     </WindowChrome.WindowChrome>
     <Window.Resources>
         <services:StringToImgConverter x:Key="S2I"/>
-        <Style x:Key="ExitButtonStyle" BasedOn="{StaticResource RoundButtonStyle}" TargetType="{x:Type Button}">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Background" Value="HotPink"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="CharactersButtonStyle" BasedOn="{StaticResource RoundButtonStyle}" TargetType="{x:Type Button}">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Background" Value="LightBlue"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
         <DrawingImage x:Key="CharactersButtonImg">
             <DrawingImage.Drawing>
                 <DrawingGroup ClipGeometry="M0,0 V1024 H1024 V0 H0 Z">
@@ -48,22 +34,34 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="ButtonPanel" Orientation="Horizontal"
-                    VerticalAlignment="Top" Opacity="0.5" Grid.Row="0">
-            <Button x:Name="CharactersButton" Style="{StaticResource CharactersButtonStyle}"
+        <StackPanel x:Name="ButtonPanel" 
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top" 
+                    Grid.Row="0">
+            <local:RoundButton x:Name="CharactersButton" 
+                    Command="{Binding CharactersButtonCommand}"
+                    AccentColor="LightBlue"
+                    Opacity="0.55"
                     Margin="5,0">
-                <Image Margin = "12" Source="{StaticResource CharactersButtonImg}"/>
-            </Button>
-            <Button x:Name="CloseButton" Command="{Binding CloseButtonCommand}"
-                    Style="{StaticResource ExitButtonStyle}"
+                <Image Margin = "12" 
+                       Source="{StaticResource CharactersButtonImg}"/>
+            </local:RoundButton>
+            <local:RoundButton x:Name="CloseButton" 
+                    Command="{Binding CloseButtonCommand}"
+                    AccentColor="Red"
+                    Opacity="0.55"
                     Margin="5,0">
-                <Image Margin="13" Source="{StaticResource CloseButtonImg}"/>
-            </Button>
+                <Image Margin="13" 
+                       Source="{StaticResource CloseButtonImg}"/>
+            </local:RoundButton>
         </StackPanel>
-        <Grid Height="200" Width="200" VerticalAlignment="Top" Grid.Row="1"
+        <Grid Height="200" Width="200" 
+              VerticalAlignment="Top" 
+              Grid.Row="1"
               DataContext="{Binding Pet}"
               PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown">
-            <Image Source="{Binding ImageSource}" Stretch="Fill"/>
+            <Image Source="{Binding ImageSource}" 
+                   Stretch="Fill"/>
         </Grid>
     </Grid>
 </Window>

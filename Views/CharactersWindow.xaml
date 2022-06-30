@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopPet.Views"
         mc:Ignorable="d"
-        Title="CharactersWindow" Height="450" Width="800">
+        WindowStyle="None"
+        Title="CharactersWindow" Height="450" Width="800" Opacity="0.5">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="-1" />
+    </WindowChrome.WindowChrome>
     <Grid>
         
     </Grid>
