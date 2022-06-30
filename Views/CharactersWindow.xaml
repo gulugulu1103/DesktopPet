@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopPet.Views"
         mc:Ignorable="d"
-        WindowStyle="None"
-        Title="CharactersWindow" Height="450" Width="800" Opacity="0.5">
+        WindowStyle="None" ResizeMode="CanMinimize"
+        Title="CharactersWindow" Height="450" Width="800" Background="Transparent">
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="-1" />
     </WindowChrome.WindowChrome>
     <Grid>
-        
+        <Border CornerRadius="50"
+                Background="White"/>
+
+
     </Grid>
 </Window>

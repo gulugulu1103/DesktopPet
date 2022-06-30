@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopPet.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace DesktopPet.Views
         public CharactersWindow()
         {
             InitializeComponent();
+            this.DataContext = new CharactersWindowViewModel();
         }
     }
 }
