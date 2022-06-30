@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace DesktopPet.ViewModels
 {
-    class CharactersWindowViewModel : BindableBase
+    public class CharactersWindowViewModel : BindableBase
     {
-        Pet Pet { get; set; }
     }
 }

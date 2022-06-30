@@ -58,9 +58,8 @@
         <Grid Height="200" Width="200" 
               VerticalAlignment="Top" 
               Grid.Row="1"
-              DataContext="{Binding Pet}"
               PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown">
-            <Image Source="{Binding ImageSource}" 
+            <Image Source="{Binding ImageNow}" 
                    Stretch="Fill"/>
         </Grid>
     </Grid>

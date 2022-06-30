@@ -1,4 +1,6 @@
-﻿namespace DesktopPet.Models
+﻿using System.Collections.Generic;
+
+namespace DesktopPet.Models
 {
     public class Pet
     {
@@ -8,8 +10,8 @@
         public double MaxHealth { get; set; } = 100;
         public double Hunger { get; set; } = 100;
         public double MaxHunger { get; set; } = 100;
-        public double Happy { get; set; } = 100;
+        public double Happy { get; set; } = 200;
         public double MaxHappy { get; set; } = 100;
-        public string ImageSource { get; set; } = @"\Views\Resources\Icons\Icon.png";
+        public Dictionary<string, string?>? ImageSource { get; set; }
     }
 }

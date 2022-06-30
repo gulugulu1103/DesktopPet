@@ -14,6 +14,15 @@ namespace DesktopPet.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
+        private string _imageNow;
+
+        public string ImageNow
+        {
+            get { return _imageNow; }
+            set { _imageNow = value; this.RaisePropertyChanged(nameof(ImageNow)); }
+        }
+
+
         public DelegateCommand CloseButtonCommand { get; set; }
         private void CloseButtonCommandExecute()
         {
@@ -38,7 +47,7 @@ namespace DesktopPet.ViewModels
         {
             this.CharactersButtonCommand = new DelegateCommand(this.CharactersButtonCommandExecute);
             this.CloseButtonCommand = new DelegateCommand(this.CloseButtonCommandExecute);
-            this.Pet = new Pet();
+            ImageNow = @"\Views\Resources\Icons\Icon.png";
         }
     }
 }

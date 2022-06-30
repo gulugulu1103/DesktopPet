@@ -12,7 +12,7 @@
     </WindowChrome.WindowChrome>
     <Grid>
         <Border CornerRadius="50"
-                Background="White"/>
+                Background="White" Opacity="0.7"/>
 
 
     </Grid>
