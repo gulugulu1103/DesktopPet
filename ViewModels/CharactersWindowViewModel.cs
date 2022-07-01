@@ -10,5 +10,6 @@ namespace DesktopPet.ViewModels
 {
     public class CharactersWindowViewModel : BindableBase
     {
+        Pet pet = 
     }
 }
