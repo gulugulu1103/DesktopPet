@@ -10,8 +10,8 @@ namespace DesktopPet.Models
         public double MaxHealth { get; set; } = 100;
         public double Hunger { get; set; } = 100;
         public double MaxHunger { get; set; } = 100;
-        public double Happy { get; set; } = 200;
+        public double Happy { get; set; } = 100;
         public double MaxHappy { get; set; } = 100;
-        public Dictionary<string, string?>? ImageSource { get; set; }
+        public Dictionary<Status, string?> ImageSource { get; set; } = new Dictionary<Status, string?>();
     }
 }

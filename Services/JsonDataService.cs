@@ -9,49 +9,13 @@ using System.Threading.Tasks;
 
 namespace DesktopPet.Services
 {
-    public class JsonDataService : IPetDataServices
+    public class JsonDataService
     {
-        public Pet GetPet(string Name)
-        {
-            throw new NotImplementedException();
-        }
+        public static readonly string DataPath = System.Environment.CurrentDirectory + "\\Data";
 
-        public void SaveAll(List<Pet> pets)
+        public static readonly JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions()
         {
-            foreach (Pet pet in pets)
-            {
-                SavePet(pet);
-            }
-        }
-
-        public void SavePet(Pet pet)
-        {
-            JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions()
-            {
-                WriteIndented = true,
-            };
-            string Path = System.Environment.CurrentDirectory + @"\Data\pets";
-            string JsonFile = Path + $"\\{pet.Name}.json";
-            string TempFile = Path + $"\\{pet.Name}_temp.json";
-            string BackupPath = Path + "\\backups";
-            string BackupFile = BackupPath + $"\\{pet.Name}_backup.json";
-            if (!Directory.Exists(Path))
-            {
-                Directory.CreateDirectory(Path);
-            }
-            if (!Directory.Exists(BackupPath))
-            {
-                Directory.CreateDirectory(BackupPath);
-            }
-            if (File.Exists(JsonFile))
-            {
-                File.WriteAllText(TempFile, JsonSerializer.Serialize(pet, jsonSerializerOptions));
-                File.Replace(TempFile, JsonFile, BackupFile);
-            }
-            else
-            {
-                File.WriteAllText(JsonFile, JsonSerializer.Serialize(pet, jsonSerializerOptions));
-            }
-        }
+            WriteIndented = true,
+        };
     }
 }
