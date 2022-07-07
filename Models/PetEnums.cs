@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace DesktopPet.Models
 {
-    public enum Status
+    public enum Moves
     {
-        Normal,
-        Happy,
-        Sad,
-        Angry,
-
+        Icon,
+        Stand,
+        MoveUp,
+        MoveDown,
+        MoveRight,
+        MoveLeft,
     }
 }

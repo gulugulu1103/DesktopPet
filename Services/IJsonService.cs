@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace DesktopPet.Services
 {
-    interface IJsonServices<TData>
+    interface IJsonService<TData>
     {
-        void SavePetData(PetData data, string path);
-        List<TData> GetAll(string path);
+        // 在path中存储单个pet的
+        void SavePetData(Pet data, string currentWorkPath);
+        List<TData> GetAll(string currentWorkPath);
     }
 }

@@ -24,6 +24,7 @@ namespace DesktopPet.Views
         {
             InitializeComponent();
             this.DataContext = new CharactersWindowViewModel();
+            this.petListBox.ItemsSource = (DataContext as CharactersWindowViewModel).pets;
         }
     }
 }

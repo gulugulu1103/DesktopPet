@@ -22,6 +22,9 @@ namespace DesktopPet
         public WindowTest()
         {
             InitializeComponent();
+            this.DataContext = new WindowTestViewModel();
         }
+
+
     }
 }

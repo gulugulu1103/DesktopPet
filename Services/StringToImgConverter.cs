@@ -9,7 +9,7 @@ namespace DesktopPet.Services
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new BitmapImage(new Uri($"/Views/Resources/Icons/{value as string}", UriKind.Relative));
+            return new BitmapImage(new Uri($"{value as string}", UriKind.Absolute));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

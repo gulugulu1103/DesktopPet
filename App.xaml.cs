@@ -12,7 +12,7 @@ namespace DesktopPet
     {
         protected override Window CreateShell()
         {
-            return Container.Resolve<MainWindow>();
+            return Container.Resolve<CharactersWindow>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

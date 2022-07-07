@@ -69,5 +69,23 @@ namespace DesktopPet.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   查找类似 描述 的本地化字符串。
+        /// </summary>
+        public static string PetInfoDescription {
+            get {
+                return ResourceManager.GetString("PetInfoDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 名字 的本地化字符串。
+        /// </summary>
+        public static string PetInfoName {
+            get {
+                return ResourceManager.GetString("PetInfoName", resourceCulture);
+            }
+        }
     }
 }
