@@ -1,7 +1,12 @@
-﻿using DesktopPet.Models;
+﻿using DesktopPet.Events;
+using DesktopPet.Models;
+using DesktopPet.Services;
 using DesktopPet.Views;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace DesktopPet.ViewModels
 {
@@ -13,51 +18,86 @@ namespace DesktopPet.ViewModels
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
-
-        private string _imageNow;
-
+        private string _imageNow = @"\Views\Resources\Icons\Icon.png";
         public string ImageNow
         {
             get { return _imageNow; }
-            set { _imageNow = value; this.RaisePropertyChanged(nameof(ImageNow)); }
+            set { SetProperty(ref _imageNow, value); }
         }
+        //private BitmapImage _image;
+        //public BitmapImage Image
+        //{
+        //    get { return _image; }
+        //    set { SetProperty(ref _image, value); }
+        //}
 
-        // 关闭按钮
-        public DelegateCommand CloseButtonCommand { get; set; }
-        private void CloseButtonCommandExecute()
-        {
-            System.Environment.Exit(0);
-        }
+        public DelegateCommand CloseButtonCommand { get; private set; }
+        public DelegateCommand CharactersButtonCommand { get; private set; }
+
+
+        private readonly IEventAggregator eventAggregator;
+
 
         // 宠物详情窗体
         CharactersWindow charactersWindow { get; set; } = null;
-        public DelegateCommand CharactersButtonCommand { get; set; }
-        private void CharactersButtonCommandExecute()
+
+
+        // 改变宠物执行
+        private void OnPetChanged(Pet pet)
         {
-            // 判断窗体是否已经拥有一个实例
-            if (charactersWindow == null)
-            {
-                charactersWindow = new CharactersWindow();
-                charactersWindow.Show();
-            }
-            else
-            {
-                charactersWindow.Activate();
-            }
+            this.ImageNow = "\\Resources\\Loading.gif";
+            ISettingsService settingsService = new JsonService<System.Object>();
+            SettingsHolder.settings.Pet = pet;
+            settingsService.SaveSettings();
+            this.ImageNow = SettingsHolder.settings.Pet.ImageSource[Moves.Stand];
+        }
+        // 关闭宠物详情窗口执行
+        private void OnCharactersWindowClose(string arg)
+        {
+            charactersWindow?.Close();
+            charactersWindow = null;
         }
 
-        private Pet _pet;
-        public Pet Pet
+        public MainWindowViewModel(IEventAggregator _eventAggregator)
         {
-            get { return _pet; }
-            set { _pet = value; this.RaisePropertyChanged(nameof(Pet)); }
-        }
+            ISettingsService settingsServices = new JsonService<System.Object>();
+            try
+            {
+                settingsServices.GetSettings();
+            }
+            catch(System.Exception e)
+            {
+                ;
+            }
+            this.ImageNow = SettingsHolder.settings.Pet.ImageSource[Moves.Stand];
+            this.eventAggregator = _eventAggregator;
+            eventAggregator.GetEvent<MainWindowPetChangedEvent>().Subscribe(OnPetChanged);
+            eventAggregator.GetEvent<WindowCloseEvent>().Subscribe(OnCharactersWindowClose, filter: arg =>
+            {
+                if (arg == "CharactersWindow") return true;
+                else return false;
+            });
+            // 生成宠物详情窗口
+            this.CharactersButtonCommand = new DelegateCommand(() =>
+            {
+                // 判断窗体是否已经拥有一个实例
+                if (charactersWindow == null)
+                {
+                    charactersWindow = new CharactersWindow();
+                    charactersWindow.Show();
+                }
+                else
+                {
+                    charactersWindow.Activate();
+                }
 
-        public MainWindowViewModel()
-        {
-            this.CharactersButtonCommand = new DelegateCommand(this.CharactersButtonCommandExecute);
-            this.CloseButtonCommand = new DelegateCommand(this.CloseButtonCommandExecute);
-            ImageNow = @"\Views\Resources\Icons\Icon.png";
+            });
+
+            // 关闭按钮
+            this.CloseButtonCommand = new DelegateCommand(() =>
+            {
+                System.Environment.Exit(0);
+            });
         }
     }
 }

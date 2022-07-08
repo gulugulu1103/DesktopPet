@@ -5,7 +5,7 @@ using System.Windows.Media.Imaging;
 
 namespace DesktopPet.Services
 {
-    class StringToImgConverter : IValueConverter
+    public class StringToImgConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

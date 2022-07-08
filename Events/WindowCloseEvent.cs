@@ -1,14 +1,14 @@
-﻿using Prism.Mvvm;
+﻿using DesktopPet.Models;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopPet.ViewModels
+namespace DesktopPet.Events
 {
-    class PetInfoViewModel : BindableBase
+    public class WindowCloseEvent : PubSubEvent<string>
     {
-
     }
 }

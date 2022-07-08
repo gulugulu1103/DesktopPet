@@ -4,6 +4,7 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:prop ="clr-namespace:DesktopPet.Properties"
         xmlns:local="clr-namespace:DesktopPet.Views"
+        xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         xmlns:services="clr-namespace:DesktopPet.Services"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="260" Width="200"
@@ -59,7 +60,9 @@
               VerticalAlignment="Top" 
               Grid.Row="1"
               PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown">
-            <Image Source="{Binding ImageNow}" 
+            <Image x:Name="petImagePlayer"
+                   gif:AnimationBehavior.RepeatBehavior="Forever"
+                   gif:AnimationBehavior.SourceUri="{Binding ImageNow}"
                    Stretch="Fill"/>
         </Grid>
     </Grid>

@@ -25,13 +25,13 @@ namespace DesktopPet.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DefaultUser")]
-        public string UserName {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FirstStart {
             get {
-                return ((string)(this["UserName"]));
+                return ((bool)(this["FirstStart"]));
             }
             set {
-                this["UserName"] = value;
+                this["FirstStart"] = value;
             }
         }
     }

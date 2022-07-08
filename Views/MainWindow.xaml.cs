@@ -1,5 +1,4 @@
-﻿using DesktopPet.ViewModels;
-using System.Windows;
+﻿using System.Windows;
 
 namespace DesktopPet.Views
 {
@@ -11,7 +10,6 @@ namespace DesktopPet.Views
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
         }
 
         private void Window_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

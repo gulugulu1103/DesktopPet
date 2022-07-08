@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:DesktopPet.Views"
         xmlns:prop="clr-namespace:DesktopPet.Properties"
         xmlns:m="clr-namespace:DesktopPet.Models"
+        xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
+        xmlns:prism="http://prismlibrary.com/"
         mc:Ignorable="d"
+        prism:ViewModelLocator.AutoWireViewModel="True"
         WindowStyle="None" ResizeMode="CanMinimize"
         Title="CharactersWindow" 
         Height="450" Width="800" 
@@ -41,7 +44,59 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
+        <!--petGifDataTemplate-->
+        <DataTemplate x:Key="petGifDataTemplate">
+            <Image Grid.Row="1" Grid.Column="1"
+                   gif:AnimationBehavior.RepeatBehavior="Forever"
+                   gif:AnimationBehavior.SourceUri="{Binding Path=ImageSource[(m:Moves)Icon]}" />
+        </DataTemplate>
+        <!--AddIcon-->
+        <DrawingImage x:Key="addDrawingImage">
+            <DrawingImage.Drawing>
+                <DrawingGroup ClipGeometry="M0,0 V1024 H1024 V0 H0 Z">
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M853.333333,480L544,480 544,170.666667C544,153.6 529.066667,138.666667 512,138.666667 494.933333,138.666667 480,153.6 480,170.666667L480,480 170.666667,480C153.6,480 138.666667,494.933333 138.666667,512 138.666667,529.066667 153.6,544 170.666667,544L480,544 480,853.333333C480,870.4 494.933333,885.333333 512,885.333333 529.066667,885.333333 544,870.4 544,853.333333L544,544 853.333333,544C870.4,544 885.333333,529.066667 885.333333,512 885.333333,494.933333 870.4,480 853.333333,480z" />
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <!--RefreshIcon-->
+        <DrawingImage x:Key="refreshDrawingImage">
+            <DrawingImage.Drawing>
+                <DrawingGroup ClipGeometry="M0,0 V1024 H1024 V0 H0 Z">
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M832,512A32,32,0,0,0,800,544C800,702.784 670.784,832 512,832 353.216,832 224,702.784 224,544 224,385.216 353.216,256 512,256 578.208,256 641.536,278.752 692.608,320L608,320A32,32,0,0,0,608,384L768,384A32,32,0,0,0,800,352L800,192A32,32,0,0,0,736,192L736,272.96A350.464,350.464,0,0,0,512,192C317.92,192 160,349.92 160,544 160,738.08 317.92,896 512,896 706.08,896 864,738.08 864,544A32,32,0,0,0,832,512" />
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <!--OkIcon-->
+        <DrawingImage x:Key="okDrawingImage">
+            <DrawingImage.Drawing>
+                <DrawingGroup ClipGeometry="M0,0 V1024 H1024 V0 H0 Z">
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M886.745,249.567C873.881,237.503,853.593,238.079,841.528,250.975L414.776,705.344 181.656,475.648C169.048,463.232 148.792,463.36 136.376,475.968 123.96,488.543 124.12,508.831 136.728,521.216L393.208,773.888C393.304,773.984 393.432,774.016 393.527,774.112 393.624,774.208 393.656,774.336 393.752,774.432 395.768,776.352 398.2,777.44 400.536,778.72 401.687,779.392 402.68,780.384 403.895,780.864 407.671,782.336 411.671,783.104 415.639,783.104 419.831,783.104 424.023,782.272 427.927,780.608 429.24,780.064 430.263,778.944 431.479,778.24 433.879,776.832 436.375,775.648 438.423,773.568 438.519,773.472 438.551,773.312 438.647,773.216 438.711,773.119 438.839,773.087 438.935,772.991L888.12,294.783C900.28,281.951,899.608,261.695,886.745,249.567z" />
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <!--CancelIcon-->
+        <DrawingImage x:Key="cancelDrawingImage">
+            <DrawingImage.Drawing>
+                <DrawingGroup ClipGeometry="M0,0 V1024 H1024 V0 H0 Z">
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M548.992,503.744L885.44,167.328A31.968,31.968,0,1,0,840.192,122.08L503.744,458.496 167.328,122.08A31.968,31.968,0,1,0,122.08,167.328L458.496,503.744 122.08,840.16A31.968,31.968,0,1,0,167.328,885.408L503.744,548.992 840.16,885.44A31.968,31.968,0,1,0,885.408,840.192L548.992,503.744z" />
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <!--EditIcon-->
+        <DrawingImage x:Key="editDrawingImage">
+            <DrawingImage.Drawing>
+                <DrawingGroup ClipGeometry="M0,0 V1024 H1024 V0 H0 Z">
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M236.352009,923.205363L233.486752,923.972843 697.433316,923.972843C708.740849,923.972843 717.89944,933.131433 717.89944,944.438967 717.89944,955.736267 708.74085,964.905091 697.433316,964.905091L78.220502,964.90509C78.210269,964.90509 78.210269,964.90509 78.200036,964.90509 77.852112,964.90509 77.514421,964.894857 77.166497,964.874391 77.023234,964.874391 76.890204,964.864158 76.746941,964.843692 76.337619,964.823226 75.918063,964.782294 75.50874,964.720895 74.74126,964.628797 73.984014,964.485535 73.247233,964.291106 72.940241,964.209242 72.623016,964.127377 72.316024,964.035279 72.080664,963.963648 71.83507,963.892016 71.59971,963.810152 71.36435,963.728288 71.128989,963.63619 70.903862,963.554325 70.903862,963.554325 70.903862,963.554325 70.893629,963.554325 70.668502,963.462227 70.433141,963.37013 70.208014,963.267799 69.972654,963.175701 69.747526,963.073371 69.522399,962.960807 69.22564,962.817544 68.928881,962.674281 68.632123,962.510552 68.335364,962.357056 68.038605,962.193327 67.75208,962.019365 67.168795,961.681674 66.605977,961.303051 66.073858,960.903961 65.848731,960.740232 65.633836,960.576503 65.418942,960.402541 64.252373,959.471332 63.188134,958.407094 62.256926,957.240525 62.082964,957.025631 61.919235,956.810736 61.755506,956.585609 61.141522,955.766964 60.59917,954.897154 60.118216,953.976178 59.974953,953.699885 59.83169,953.41336 59.69866,953.137067 59.596329,952.91194 59.493999,952.686812 59.391668,952.451452 59.19724,951.990964 59.023278,951.530476 58.859549,951.059756 58.706053,950.589035 58.56279,950.118314 58.42976,949.647593 58.245565,948.910813 58.092069,948.174032 57.979505,947.427019 57.887407,946.792569 57.826009,946.137653 57.785077,945.49297 57.785077,945.472504 57.774844,945.462271 57.785077,945.441805 57.774844,945.288309 57.774844,945.134813 57.774844,944.981317 57.764611,944.899453 57.764611,944.807355 57.764611,944.715257 57.754378,944.408265 57.764611,944.09104 57.774844,943.773815 57.785077,943.548688 57.79531,943.333793 57.805543,943.108666 57.846475,942.443517 57.92834,941.778368 58.03067,941.113219 58.061369,940.888092 58.102301,940.673197 58.153467,940.458303 58.194399,940.233176 58.245565,940.018281 58.29673,939.793154 58.347895,939.57826 58.399061,939.353132 58.460459,939.138238L58.613955,938.57542C58.624188,938.493556,58.654887,938.421924,58.675353,938.350293L99.443872,786.317691C100.385314,782.807751,102.237498,779.625268,104.81623,777.067003L738.242767,150.138461C746.275721,142.187372 759.24101,142.24877 767.192099,150.281724 775.143188,158.324911 775.071557,171.279967 767.038603,179.231056L137.551795,802.271035 107.180067,915.4794 220.500995,885.076973 850.069667,261.95513C858.102621,254.004041 871.06791,254.075672 879.018999,262.108626 886.970088,270.14158 886.898457,283.096636 878.865503,291.047725L245.438966,917.986501C242.911402,920.483368,239.780085,922.284387,236.352009,923.205363z" />
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M921.621285,247.977791C921.521001,248.057609 938.439322,231.139288 938.439322,231.139288 977.236953,192.341657 977.236953,129.453351 938.480254,90.685396 899.643737,51.877532 836.773851,51.908231 797.995663,90.685396 797.995663,90.685396 781.059945,107.62316 781.15716,107.523899L921.621285,247.977791z" />
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M57.774845,943.773817C57.764612,944.091042 57.754379,944.408267 57.764612,944.715259 57.754379,944.623161 57.754379,944.531064 57.754379,944.438966 57.754379,944.213839 57.754379,943.988712 57.774845,943.773817z" />
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M58.030671,941.113221C57.92834,941.77837 57.846476,942.443519 57.805544,943.108668 57.836243,942.433286 57.918108,941.768137 58.030671,941.113221z" />
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M57.979506,947.42702C57.877175,946.79257 57.815777,946.147887 57.785078,945.492971 57.82601,946.137655 57.887408,946.792571 57.979506,947.42702z" />
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M1024,1024z M0,0z M58.613956,938.575422C58.491159,938.974511 58.378596,939.383834 58.296731,939.793156 58.347896,939.578262 58.399062,939.353134 58.46046,939.13824L58.613956,938.575422z" />
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
     </Window.Resources>
+    <!--Window-->
     <Grid>
         <Border CornerRadius="50"
                 Background="White" Opacity="1"/>
@@ -49,15 +104,16 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width ="0.4*"/>
                 <ColumnDefinition Width ="*"/>
-                <ColumnDefinition Width ="0.2*"/>
+                <ColumnDefinition Width ="0.4*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="0.35*"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
             <!--petListBox-->
             <ListBox 
                 x:Name="petListBox"
+                SelectedIndex="{Binding SelectedIndex}"
                 Grid.ColumnSpan="3"
                 Background="Transparent"
                 BorderThickness="0"
@@ -75,19 +131,47 @@
                 Grid.Row="1" Margin="10,20"
                 Content="{Binding SelectedItem, ElementName=petListBox}"
                 ContentTemplate="{StaticResource petInfoDataTemplate}"/>
+            <!--PetGifInfo-->
+            <UserControl
+                Grid.Row="1" Grid.Column="1"
+                Margin="20"
+                Content="{Binding SelectedItem, ElementName=petListBox}"
+                ContentTemplate="{StaticResource petGifDataTemplate}"/>
         </Grid>
+        <!--Docker Background-->
+        <Border Background="Black" Opacity="0.2"
+                CornerRadius="30" 
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Height="350" Width="120" Margin="0,150,-30,0"
+                />
         <!--Button Docker-->
-        <StackPanel 
-            Orientation="Horizontal"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom">
-            <StackPanel.Background>
-                <SolidColorBrush Color="Black" Opacity="0.2"/>
-            </StackPanel.Background>
-            <local:RoundButton AccentColor="" Width="50" Height="50" Margin="20"/>
-            <Grid Background="Aqua" Width="50" Height="50" Margin="20"/>
-            <Grid Background="Aqua" Width="50" Height="50" Margin="20"/>
-            <Grid Background="Aqua" Width="50" Height="50" Margin="20"/>
+        <StackPanel
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Height="300" Margin="0,160,20,0">
+            <!--AddButton-->
+            <local:RoundButton AccentColor="Aquamarine" 
+                                   Width="50" Height="50" Margin="0,10">
+                <Image Source="{StaticResource addDrawingImage}" Margin="10"/>
+            </local:RoundButton>
+            <!--RefreshButton-->
+            <local:RoundButton AccentColor="LightSalmon" 
+                                   Width="50" Height="50" Margin="0,10">
+                <Image Source="{StaticResource editDrawingImage}" Margin="12"/>
+            </local:RoundButton>
+            <!--OkButton-->
+            <local:RoundButton AccentColor="LightGreen" 
+                                   Width="50" Height="50" Margin="0,10"
+                               Command="{Binding ApplyPetChangeCommand}">
+                <Image Source="{StaticResource okDrawingImage}" Margin="10"/>
+            </local:RoundButton>
+            <!--CancelButton-->
+            <local:RoundButton AccentColor="PaleVioletRed" 
+                                   Width="50" Height="50" Margin="0,10"
+                               Command="{Binding CloseCommand}">
+                <Image Source="{StaticResource cancelDrawingImage}" Margin="10"/>
+            </local:RoundButton>
         </StackPanel>
     </Grid>
 </Window>

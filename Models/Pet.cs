@@ -15,7 +15,7 @@ namespace DesktopPet.Models
             stringBuilder.AppendLine($"Name = {this.Name}");
             stringBuilder.AppendLine($"Description = {this.Description}");
             stringBuilder.AppendLine($"ImageSource:");
-            foreach(var item in this.ImageSource)
+            foreach (var item in this.ImageSource)
             {
                 stringBuilder.AppendLine($"{item.Key} = {item.Value}");
             }
