@@ -1,4 +1,5 @@
-﻿using DesktopPet.Views;
+﻿using DesktopPet.Services;
+using DesktopPet.Views;
 using Prism.DryIoc;
 using Prism.Ioc;
 using System.Windows;

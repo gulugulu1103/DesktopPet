@@ -3,10 +3,32 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <PackageIcon>Icon.jpg</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\LieDown.gif" />
     <None Remove="Resources\Loading.gif" />
+    <None Remove="Resources\MoveRight.gif" />
     <None Remove="Views\Resources\Icons\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\net6.0-windows\Data\Pets\Unknown\Icon.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="bin\Debug\net6.0-windows\Data\Pets\样例\MoveLeft.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\net6.0-windows\Data\Pets\样例\Stand.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\net6.0-windows\Data\Pets\样例\MoveRight.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\net6.0-windows\Data\Pets\样例\LieDown.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\net6.0-windows\Data\Pets\样例\Icon.jpg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
@@ -40,6 +62,18 @@
     <None Update="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Resources\SamplePet\LieDown.gif">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\SamplePet\MoveLeft.gif">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\SamplePet\MoveRight.gif">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\SamplePet\Stand.gif">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>

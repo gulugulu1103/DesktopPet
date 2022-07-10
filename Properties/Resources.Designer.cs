@@ -97,5 +97,93 @@ namespace DesktopPet.Properties {
                 return ResourceManager.GetString("PetInfoName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] SamplePet_Icon {
+            get {
+                object obj = ResourceManager.GetObject("SamplePet_Icon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] SamplePet_LieDown {
+            get {
+                object obj = ResourceManager.GetObject("SamplePet_LieDown", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] SamplePet_MoveDown {
+            get {
+                object obj = ResourceManager.GetObject("SamplePet_MoveDown", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] SamplePet_MoveLeft {
+            get {
+                object obj = ResourceManager.GetObject("SamplePet_MoveLeft", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] SamplePet_MoveRight {
+            get {
+                object obj = ResourceManager.GetObject("SamplePet_MoveRight", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] SamplePet_MoveUp {
+            get {
+                object obj = ResourceManager.GetObject("SamplePet_MoveUp", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] SamplePet_Stand {
+            get {
+                object obj = ResourceManager.GetObject("SamplePet_Stand", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 简易桌宠官方样例 的本地化字符串。
+        /// </summary>
+        public static string SamplePetDescription {
+            get {
+                return ResourceManager.GetString("SamplePetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 样例 的本地化字符串。
+        /// </summary>
+        public static string SamplePetName {
+            get {
+                return ResourceManager.GetString("SamplePetName", resourceCulture);
+            }
+        }
     }
 }

@@ -9,7 +9,8 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="260" Width="200"
         Background="Transparent" Icon="/Views/Resources/Icons/Icon.png"
-        WindowStyle="None" ResizeMode="NoResize" Topmost="True">
+        WindowStyle="None" ResizeMode="NoResize" Topmost="True"
+        ShowInTaskbar="False">
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="-1" />
     </WindowChrome.WindowChrome>

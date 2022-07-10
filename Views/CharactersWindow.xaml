@@ -107,7 +107,7 @@
                 <ColumnDefinition Width ="0.4*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.35*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
             <!--petListBox-->

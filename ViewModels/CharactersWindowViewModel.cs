@@ -25,15 +25,15 @@ namespace DesktopPet.ViewModels
 
         public CharactersWindowViewModel(IEventAggregator _eventAggregator)
         {
-            IPetService<Pet> jsonService = new JsonService<Pet>();
-            this.pets = jsonService.GetAll(Environment.CurrentDirectory + "\\Data");
+            IPetJsonService jsonService = new JsonService();
+            this.pets = jsonService.GetAllPets();
             this.eventAggregator = _eventAggregator;
-
+            this.SelectedIndex = Properties.Settings.Default.SelectedPetIndex;
 
             this.ApplyPetChangeCommand = new DelegateCommand(() =>
             {
-                eventAggregator.GetEvent<WindowCloseEvent>().Publish("CharactersWindow");
                 eventAggregator.GetEvent<MainWindowPetChangedEvent>().Publish(pets[SelectedIndex]);
+                eventAggregator.GetEvent<WindowCloseEvent>().Publish("CharactersWindow");
             });
 
             this.CloseCommand = new DelegateCommand(() =>

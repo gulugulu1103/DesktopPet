@@ -3,7 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="FirstStart" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SelectedPetIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -8,6 +8,7 @@ namespace DesktopPet.Models
     {
         public string Name { get; set; } = "Unknown";
         public string Description { get; set; } = "No Description Here";
+        // public string Icon { get; set; } = "Icon.jpg";
         public Dictionary<Moves, string?> ImageSource { get; set; } = new Dictionary<Moves, string?>();
         public override string ToString()
         {

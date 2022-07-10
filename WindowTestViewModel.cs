@@ -8,7 +8,7 @@ namespace DesktopPet
 {
     public class WindowTestViewModel : BindableBase
     {
-        IPetService<Pet> jsonService = new JsonService<Pet>();
+        IPetJsonService jsonService = new JsonService();
         private List<Pet> _pets;
         public List<Pet> Pets
         {
@@ -27,7 +27,7 @@ namespace DesktopPet
 
         public WindowTestViewModel()
         {
-            Pets = jsonService.GetAll(Environment.CurrentDirectory);
+            Pets = jsonService.GetAllPets(Environment.CurrentDirectory);
             // MessageBox.Show(Pets[0].ToString());
         }
     }

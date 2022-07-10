@@ -130,4 +130,31 @@
   <data name="PetInfoName" xml:space="preserve">
     <value>名字</value>
   </data>
+  <data name="SamplePetDescription" xml:space="preserve">
+    <value>简易桌宠官方样例</value>
+  </data>
+  <data name="SamplePetName" xml:space="preserve">
+    <value>样例</value>
+  </data>
+  <data name="SamplePet_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\samplepet\icon.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SamplePet_LieDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\samplepet\liedown.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SamplePet_MoveDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\samplepet\movedown.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SamplePet_MoveLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\samplepet\moveleft.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SamplePet_MoveRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\samplepet\moveright.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SamplePet_MoveUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\samplepet\moveup.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SamplePet_Stand" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\samplepet\stand.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

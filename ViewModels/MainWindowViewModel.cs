@@ -12,6 +12,7 @@ namespace DesktopPet.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
+        private readonly JsonService jsonService = new JsonService();
         private string _title = "Desktop Pet";
         public string Title
         {
@@ -24,12 +25,7 @@ namespace DesktopPet.ViewModels
             get { return _imageNow; }
             set { SetProperty(ref _imageNow, value); }
         }
-        //private BitmapImage _image;
-        //public BitmapImage Image
-        //{
-        //    get { return _image; }
-        //    set { SetProperty(ref _image, value); }
-        //}
+
 
         public DelegateCommand CloseButtonCommand { get; private set; }
         public DelegateCommand CharactersButtonCommand { get; private set; }
@@ -46,12 +42,13 @@ namespace DesktopPet.ViewModels
         private void OnPetChanged(Pet pet)
         {
             this.ImageNow = "\\Resources\\Loading.gif";
-            ISettingsService settingsService = new JsonService<System.Object>();
             SettingsHolder.settings.Pet = pet;
-            settingsService.SaveSettings();
+            jsonService.SaveSettings();
+            Properties.Settings.Default.SelectedPetIndex = charactersWindow.petListBox.SelectedIndex;
+            Properties.Settings.Default.Save();
             this.ImageNow = SettingsHolder.settings.Pet.ImageSource[Moves.Stand];
         }
-        // 关闭宠物详情窗口执行
+        // CharacterWindowClose窗体关闭
         private void OnCharactersWindowClose(string arg)
         {
             charactersWindow?.Close();
@@ -60,15 +57,15 @@ namespace DesktopPet.ViewModels
 
         public MainWindowViewModel(IEventAggregator _eventAggregator)
         {
-            ISettingsService settingsServices = new JsonService<System.Object>();
-            try
+            IInitService initService = new InitService();
+            // 如果是第一次执行该程序
+            if (Properties.Settings.Default.FirstStart)
             {
-                settingsServices.GetSettings();
+                Properties.Settings.Default.FirstStart = false;
+                initService.FirstInit();
             }
-            catch(System.Exception e)
-            {
-                ;
-            }
+            jsonService.GetSettings();
+            initService.EnvironmentCheck();
             this.ImageNow = SettingsHolder.settings.Pet.ImageSource[Moves.Stand];
             this.eventAggregator = _eventAggregator;
             eventAggregator.GetEvent<MainWindowPetChangedEvent>().Subscribe(OnPetChanged);
@@ -96,6 +93,7 @@ namespace DesktopPet.ViewModels
             // 关闭按钮
             this.CloseButtonCommand = new DelegateCommand(() =>
             {
+                Application.Current.Shutdown();
                 System.Environment.Exit(0);
             });
         }
