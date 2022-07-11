@@ -10,7 +10,7 @@ namespace DesktopPet.Services
     public class JsonService : IPetService, ISettingsJsonService
     {
         private static readonly string CurrentPath = Environment.CurrentDirectory;
-        private static readonly string BackupPath = CurrentPath + "\\Backups";
+        private static readonly string BackupPath = Path.Combine(CurrentPath, "Backups");
         public static readonly JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions()
         {
             Encoder = System.Text.Encodings.Web.JavaScriptEncoder.Create(System.Text.Unicode.UnicodeRanges.All),
@@ -18,11 +18,11 @@ namespace DesktopPet.Services
         };
         public List<Pet> GetAllPets()
         {
-            return GetAllPets(CurrentPath + "\\Data");
+            return GetAllPets(Path.Combine(CurrentPath, "Data"));
         }
         public List<Pet> GetAllPets(string dataPath)
         {
-            string petsPath = dataPath + "\\Pets";
+            string petsPath = Path.Combine(dataPath, "Pets");
             List<Pet> pets = new List<Pet>();
             DirectoryInfo[] petfolders = (new DirectoryInfo(petsPath)).GetDirectories();
             foreach (DirectoryInfo petfolder in petfolders)
@@ -62,20 +62,19 @@ namespace DesktopPet.Services
                 }
             }
             return pets;
-
         }
 
         public void SavePetData(Pet pet)
         {
-            SavePetData(pet, CurrentPath + "\\Data");
+            SavePetData(pet, Path.Combine(CurrentPath, "Data"));
         }
         public void SavePetData(Pet pet, string dataPath)
         {
-            string petsPath = dataPath + "\\Pets";
-            string petPath = petsPath + $"\\{pet.Name}";
-            string jsonFile = petPath + $"\\{pet.Name}.json";
-            string tempFile = petPath + $"\\{pet.Name}_tempdata.json";
-            string backupFile = BackupPath + $"\\{pet.Name}_backupdata.json";
+            string petsPath = Path.Combine(dataPath, "Pets");
+            string petPath = Path.Combine(petsPath, $"{pet.Name}");
+            string jsonFile = Path.Combine(petPath, $"{pet.Name}.json");
+            string tempFile = Path.Combine(petPath, $"{pet.Name}_tempdata.json");
+            string backupFile = Path.Combine(BackupPath, $"{pet.Name}_backupdata.json");
             if (!Directory.Exists(petPath))
             {
                 Directory.CreateDirectory(petPath);
@@ -105,7 +104,7 @@ namespace DesktopPet.Services
 
         public void GetSettings()
         {
-            GetSettings(ref SettingsHolder.settings, CurrentPath + "\\Saves");
+            GetSettings(ref SettingsHolder.settings, Path.Combine(CurrentPath + "Saves"));
         }
         public void GetSettings(string savePath)
         {
@@ -113,7 +112,7 @@ namespace DesktopPet.Services
         }
         public void GetSettings(ref DesktopPetSettings settings, string savePath)
         {
-            string jsonFile = savePath + $"\\Settings.json";
+            string jsonFile = Path.Combine(savePath, $"Settings.json");
             try
             {
                 string jsonString = File.ReadAllText(jsonFile);
@@ -140,7 +139,7 @@ namespace DesktopPet.Services
         }
         public void SaveSettings(DesktopPetSettings settings)
         {
-            SaveSettings(settings, CurrentPath + "\\Saves");
+            SaveSettings(settings, Path.Combine(CurrentPath, "Saves"));
         }
         public void SaveSettings(DesktopPetSettings settings, string savePath)
         {
@@ -149,9 +148,9 @@ namespace DesktopPet.Services
             {
                 Directory.CreateDirectory(savePath);
             }
-            string jsonFile = savePath + $"\\Settings.json";
-            string tempFile = savePath + $"\\Settings_tempdata.json";
-            string backupFile = BackupPath + $"\\Settings_backupdata.json";
+            string jsonFile = Path.Combine(savePath, $"Settings.json");
+            string tempFile = Path.Combine(savePath, $"Settings_tempdata.json");
+            string backupFile = Path.Combine(BackupPath, $"Settings_backupdata.json");
             if (File.Exists(jsonFile))
             {
                 File.WriteAllText(tempFile, JsonSerializer.Serialize(settings, jsonSerializerOptions));
@@ -174,43 +173,44 @@ namespace DesktopPet.Services
             {
                 if (imageSource.ContainsKey(move) && imageSource[move] != null)
                 {
-                    imageSource[move] = CurrentPath + $"\\Data\\Pets\\{Properties.Resources.SamplePetName}\\" + imageSource[move];
+                    imageSource[move] = Path.Combine(CurrentPath, $"Data\\Pets\\{Properties.Resources.SamplePetName}\\", imageSource[move]);
                 }
                 else
                 {
                     imageSource[move] = null;
                 }
             }
-
             SaveSettings(defaultSettings);
         }
         public void CreateDefaultPetData()
         {
             SavePetData(new InitService().CreateSamplePet<Pet>());
             ByteToFileConverter converter = new ByteToFileConverter();
-            string defaultPetPath = Environment.CurrentDirectory + $"\\Data\\Pets\\{Properties.Resources.SamplePetName}";
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_Icon, defaultPetPath + "\\Icon.jpg");
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_Stand, defaultPetPath + "\\Stand.gif");
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_LieDown, defaultPetPath + "\\LieDown.gif");
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveLeft, defaultPetPath + "\\MoveLeft.gif");
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveRight, defaultPetPath + "\\MoveRight.gif");
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveUp, defaultPetPath + "\\MoveUp.gif");
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveDown, defaultPetPath + "\\MoveDown.gif");
+            string defaultPetPath = Path.Combine(Environment.CurrentDirectory, $"Data\\Pets\\{Properties.Resources.SamplePetName}");
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_Icon,     Path.Combine(defaultPetPath + "Icon.jpg"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_Stand,    Path.Combine(defaultPetPath + "Stand.gif"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_LieDown,  Path.Combine(defaultPetPath + "LieDown.gif"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveLeft, Path.Combine(defaultPetPath + "MoveLeft.gif"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveRight,Path.Combine(defaultPetPath + "MoveRight.gif"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveUp,   Path.Combine(defaultPetPath + "MoveUp.gif"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveDown, Path.Combine(defaultPetPath + "MoveDown.gif"));
         }
 
         public JsonService()
         {
-            if (!Directory.Exists(BackupPath))
+            List<string> paths = new()
             {
-                Directory.CreateDirectory(BackupPath);
-            }
-            if (!Directory.Exists(CurrentPath + "\\Data\\Pets"))
+                BackupPath,
+                Path.Combine(CurrentPath, "Data\\Pets"),
+                Path.Combine(CurrentPath + "Saves"),
+            };
+            foreach(string path in paths)
             {
-                Directory.CreateDirectory(CurrentPath + "\\Data\\Pets");
-            }
-            if (!Directory.Exists(CurrentPath + "\\Saves"))
-            {
-                Directory.CreateDirectory(CurrentPath + "\\Saves");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
             }
         }
     }
