@@ -124,11 +124,20 @@
   <data name="Loading" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Loading.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="LooseFormatDescription" xml:space="preserve">
+    <value>生成松散格式的宠物，生成速度更快，但不便于网络分发</value>
+  </data>
+  <data name="PetFormatDescription" xml:space="preserve">
+    <value>生成.pet封装格式的宠物，保密性更强，便于网络分发</value>
+  </data>
   <data name="PetInfoDescription" xml:space="preserve">
-    <value>描述</value>
+    <value>宠物描述</value>
   </data>
   <data name="PetInfoName" xml:space="preserve">
-    <value>名字</value>
+    <value>宠物名称</value>
+  </data>
+  <data name="PleaseEnter" xml:space="preserve">
+    <value>请输入内容</value>
   </data>
   <data name="SamplePetDescription" xml:space="preserve">
     <value>简易桌宠官方样例</value>

@@ -1,5 +1,4 @@
-﻿using DesktopPet.Services;
-using DesktopPet.Views;
+﻿using DesktopPet.Views;
 using Prism.DryIoc;
 using Prism.Ioc;
 using System.Windows;
@@ -13,7 +12,7 @@ namespace DesktopPet
     {
         protected override Window CreateShell()
         {
-            return Container.Resolve<MainWindow>();
+            return Container.Resolve<WindowTest>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

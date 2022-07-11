@@ -1,9 +1,6 @@
 ﻿using DesktopPet.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesktopPet.Services
 {
@@ -34,14 +31,14 @@ namespace DesktopPet.Services
 
         }
 
-        public Pet CreateSamplePet()
+        public Pet CreateSamplePet<T>()
         {
-            Pet samplePet = new Pet()
-            {
-                Name = Properties.Resources.SamplePetName,
-                Description = Properties.Resources.SamplePetDescription,
-                ImageSource = new Dictionary<Moves, string?>(),
-            };
+            // 调用Pet的构造函数
+            var constructor = typeof(T).GetConstructor(Array.Empty<Type>());
+            var samplePet = constructor.Invoke(null) as Pet;
+            samplePet.Name = Properties.Resources.SamplePetName;
+            samplePet.Description = Properties.Resources.SamplePetDescription;
+            samplePet.ImageSource = new Dictionary<Moves, string?>();
             samplePet.ImageSource.Add(Moves.Icon, "Icon.jpg");
             samplePet.ImageSource.Add(Moves.Stand, "Stand.gif");
             samplePet.ImageSource.Add(Moves.LieDown, "LieDown.gif");
@@ -51,6 +48,8 @@ namespace DesktopPet.Services
             samplePet.ImageSource.Add(Moves.MoveDown, "MoveDown.gif");
             return samplePet;
         }
+
+
 
     }
 }

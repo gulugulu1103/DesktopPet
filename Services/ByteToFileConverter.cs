@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesktopPet.Services
 {
@@ -25,7 +21,7 @@ namespace DesktopPet.Services
                     fs.Write(byteArray, 0, byteArray.Length);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.MessageBox.Show("A handled exception just occurred: " + e.Message, "错误", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
                 Environment.Exit(0);

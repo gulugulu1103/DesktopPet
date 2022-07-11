@@ -5,8 +5,7 @@ using DesktopPet.Views;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
-using System.Windows;
-using System.Windows.Media.Imaging;
+using System;
 
 namespace DesktopPet.ViewModels
 {
@@ -19,13 +18,12 @@ namespace DesktopPet.ViewModels
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
-        private string _imageNow = @"\Views\Resources\Icons\Icon.png";
+        private string _imageNow;
         public string ImageNow
         {
             get { return _imageNow; }
             set { SetProperty(ref _imageNow, value); }
         }
-
 
         public DelegateCommand CloseButtonCommand { get; private set; }
         public DelegateCommand CharactersButtonCommand { get; private set; }
@@ -33,10 +31,8 @@ namespace DesktopPet.ViewModels
 
         private readonly IEventAggregator eventAggregator;
 
-
         // 宠物详情窗体
         CharactersWindow charactersWindow { get; set; } = null;
-
 
         // 改变宠物执行
         private void OnPetChanged(Pet pet)
@@ -48,6 +44,7 @@ namespace DesktopPet.ViewModels
             Properties.Settings.Default.Save();
             this.ImageNow = SettingsHolder.settings.Pet.ImageSource[Moves.Stand];
         }
+
         // CharacterWindowClose窗体关闭
         private void OnCharactersWindowClose(string arg)
         {
@@ -64,9 +61,12 @@ namespace DesktopPet.ViewModels
                 Properties.Settings.Default.FirstStart = false;
                 initService.FirstInit();
             }
+            // 程序初始化/数据读取
             jsonService.GetSettings();
             initService.EnvironmentCheck();
             this.ImageNow = SettingsHolder.settings.Pet.ImageSource[Moves.Stand];
+
+            // 订阅信息
             this.eventAggregator = _eventAggregator;
             eventAggregator.GetEvent<MainWindowPetChangedEvent>().Subscribe(OnPetChanged);
             eventAggregator.GetEvent<WindowCloseEvent>().Subscribe(OnCharactersWindowClose, filter: arg =>
@@ -74,26 +74,19 @@ namespace DesktopPet.ViewModels
                 if (arg == "CharactersWindow") return true;
                 else return false;
             });
+
             // 生成宠物详情窗口
             this.CharactersButtonCommand = new DelegateCommand(() =>
             {
-                // 判断窗体是否已经拥有一个实例
-                if (charactersWindow == null)
-                {
-                    charactersWindow = new CharactersWindow();
-                    charactersWindow.Show();
-                }
-                else
-                {
-                    charactersWindow.Activate();
-                }
+                charactersWindow = new CharactersWindow();
+                charactersWindow.ShowDialog();
+                charactersWindow = null;
 
             });
 
             // 关闭按钮
             this.CloseButtonCommand = new DelegateCommand(() =>
             {
-                Application.Current.Shutdown();
                 System.Environment.Exit(0);
             });
         }

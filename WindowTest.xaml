@@ -12,5 +12,6 @@
     <Window.Resources>
     </Window.Resources>
     <Grid>
+        <Button Content="生成样例" Command="{Binding ButtonCommand}"/>
     </Grid>
 </Window>

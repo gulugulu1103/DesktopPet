@@ -4,11 +4,14 @@ using System.Text;
 
 namespace DesktopPet.Models
 {
+    [MessagePack.MessagePackObject]
     public class Pet
     {
+        [MessagePack.Key(0)]
         public string Name { get; set; } = "Unknown";
+        [MessagePack.Key(1)]
         public string Description { get; set; } = "No Description Here";
-        // public string Icon { get; set; } = "Icon.jpg";
+        [MessagePack.Key(2)]
         public Dictionary<Moves, string?> ImageSource { get; set; } = new Dictionary<Moves, string?>();
         public override string ToString()
         {

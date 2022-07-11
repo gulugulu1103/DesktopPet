@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DesktopPet.Services
+﻿namespace DesktopPet.Services
 {
     interface IInitService
     {
@@ -17,9 +11,10 @@ namespace DesktopPet.Services
         /// </summary>
         void EnvironmentCheck();
         /// <summary>
-        /// 创建一个简易桌宠的样例宠物并返回
+        /// 调用T的无参构造器创建一个桌宠样例实例并返回
         /// </summary>
-        /// <returns>一个简易桌宠的样例宠物</returns>
-        Models.Pet CreateSamplePet();
+        /// <typeparam name="T">Pet或者其子类</typeparam>
+        /// <returns></returns>
+        Models.Pet CreateSamplePet<T>();
     }
 }

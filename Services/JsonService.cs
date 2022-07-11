@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 using System.Linq;
+using System.Text.Json;
 
 namespace DesktopPet.Services
 {
-    public class JsonService : IPetJsonService, ISettingsJsonService
+    public class JsonService : IPetService, ISettingsJsonService
     {
         private static readonly string CurrentPath = Environment.CurrentDirectory;
         private static readonly string BackupPath = CurrentPath + "\\Backups";
@@ -94,7 +94,7 @@ namespace DesktopPet.Services
             }
             if (File.Exists(jsonFile))
             {
-                File.WriteAllText(tempFile, JsonSerializer.Serialize(pet, jsonSerializerOptions));
+                File.WriteAllText(tempFile, JsonSerializer.Serialize(pet as SealedPet, jsonSerializerOptions));
                 File.Replace(tempFile, jsonFile, backupFile);
             }
             else
@@ -121,7 +121,7 @@ namespace DesktopPet.Services
             }
             catch (Exception e)
             {
-                if(e is FileNotFoundException)
+                if (e is FileNotFoundException)
                 {
                     CreateDefaultSettings();
                 }
@@ -167,7 +167,7 @@ namespace DesktopPet.Services
         {
             DesktopPetSettings defaultSettings = new DesktopPetSettings()
             {
-                Pet = new InitService().CreateSamplePet(),
+                Pet = new InitService().CreateSamplePet<Pet>(),
             };
             var imageSource = defaultSettings.Pet.ImageSource;
             foreach (Moves move in Enum.GetValues(typeof(Moves)))
@@ -186,7 +186,7 @@ namespace DesktopPet.Services
         }
         public void CreateDefaultPetData()
         {
-            SavePetData(new InitService().CreateSamplePet());
+            SavePetData(new InitService().CreateSamplePet<Pet>());
             ByteToFileConverter converter = new ByteToFileConverter();
             string defaultPetPath = Environment.CurrentDirectory + $"\\Data\\Pets\\{Properties.Resources.SamplePetName}";
             converter.ByteArrayToFile(Properties.Resources.SamplePet_Icon, defaultPetPath + "\\Icon.jpg");
@@ -208,7 +208,8 @@ namespace DesktopPet.Services
             {
                 Directory.CreateDirectory(CurrentPath + "\\Data\\Pets");
             }
-            if(!Directory.Exists(CurrentPath + "\\Saves")){
+            if (!Directory.Exists(CurrentPath + "\\Saves"))
+            {
                 Directory.CreateDirectory(CurrentPath + "\\Saves");
             }
         }

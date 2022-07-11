@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopPet.Views"
         xmlns:prop="clr-namespace:DesktopPet.Properties"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:m="clr-namespace:DesktopPet.Models"
         xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         xmlns:prism="http://prismlibrary.com/"
@@ -46,9 +47,8 @@
         </DataTemplate>
         <!--petGifDataTemplate-->
         <DataTemplate x:Key="petGifDataTemplate">
-            <Image Grid.Row="1" Grid.Column="1"
-                   gif:AnimationBehavior.RepeatBehavior="Forever"
-                   gif:AnimationBehavior.SourceUri="{Binding Path=ImageSource[(m:Moves)Icon]}" />
+            <Image gif:AnimationBehavior.SourceUri="{Binding Path=ImageSource[(m:Moves)Stand]}"
+                   gif:AnimationBehavior.RepeatBehavior="Forever"/>
         </DataTemplate>
         <!--AddIcon-->
         <DrawingImage x:Key="addDrawingImage">
@@ -152,7 +152,8 @@
                 Height="300" Margin="0,160,20,0">
             <!--AddButton-->
             <local:RoundButton AccentColor="Aquamarine" 
-                                   Width="50" Height="50" Margin="0,10">
+                                   Width="50" Height="50" Margin="0,10"
+                               Command="{Binding CreateCommand}">
                 <Image Source="{StaticResource addDrawingImage}" Margin="10"/>
             </local:RoundButton>
             <!--RefreshButton-->

@@ -81,7 +81,25 @@ namespace DesktopPet.Properties {
         }
         
         /// <summary>
-        ///   查找类似 描述 的本地化字符串。
+        ///   查找类似 生成松散格式的宠物，生成速度更快，但不便于网络分发 的本地化字符串。
+        /// </summary>
+        public static string LooseFormatDescription {
+            get {
+                return ResourceManager.GetString("LooseFormatDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 生成.pet封装格式的宠物，保密性更强，便于网络分发 的本地化字符串。
+        /// </summary>
+        public static string PetFormatDescription {
+            get {
+                return ResourceManager.GetString("PetFormatDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 宠物描述 的本地化字符串。
         /// </summary>
         public static string PetInfoDescription {
             get {
@@ -90,11 +108,20 @@ namespace DesktopPet.Properties {
         }
         
         /// <summary>
-        ///   查找类似 名字 的本地化字符串。
+        ///   查找类似 宠物名称 的本地化字符串。
         /// </summary>
         public static string PetInfoName {
             get {
                 return ResourceManager.GetString("PetInfoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请输入内容 的本地化字符串。
+        /// </summary>
+        public static string PleaseEnter {
+            get {
+                return ResourceManager.GetString("PleaseEnter", resourceCulture);
             }
         }
         

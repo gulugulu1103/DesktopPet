@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 namespace DesktopPet.Services
 {
-    interface IPetJsonService
+    interface IPetService
     {
         /// <summary>
         /// 在没有宠物文件时候创建默认宠物文件，常用于Init中
         /// </summary>
         void CreateDefaultPetData();
         /// <summary>
-        /// “.\Data\Pets\宠物名”中以Json序列化的方式保存宠物数据
+        /// “.\Data\Pets\宠物名”中以序列化的方式保存宠物数据
         /// </summary>
         /// <param name="data">要保存的宠物</param>
         void SavePetData(Pet pet);
         /// <summary>
-        /// 在“.\dataPath\Pets\宠物名”中以Json序列化的方式保存宠物数据
+        /// 在“.\dataPath\Pets\宠物名”中以序列化的方式保存宠物数据
         /// </summary>
         /// <param name="data">要保存的宠物</param>
         /// <param name="dataPath">文件夹路径</param>

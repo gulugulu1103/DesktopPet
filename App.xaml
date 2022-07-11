@@ -3,5 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DesktopPet"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              DispatcherUnhandledException="Application_DispatcherUnhandledException">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <hc:ThemeResources/>
+                <hc:Theme/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </prism:PrismApplication>

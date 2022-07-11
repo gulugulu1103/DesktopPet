@@ -31,6 +31,13 @@
     <None Include="bin\Debug\net6.0-windows\Data\Pets\样例\Icon.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="HandyControls" Version="3.3.11" />
+    <PackageReference Include="HandyControls.Lang.zh-CN" Version="3.3.11" />
+    <PackageReference Include="MessagePack" Version="2.4.35" />
+    <PackageReference Include="MessagePackAnalyzer" Version="2.4.35">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
     <PackageReference Include="XamlAnimatedGif" Version="2.0.2" />
   </ItemGroup>

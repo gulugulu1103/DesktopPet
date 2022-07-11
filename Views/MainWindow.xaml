@@ -4,6 +4,7 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:prop ="clr-namespace:DesktopPet.Properties"
         xmlns:local="clr-namespace:DesktopPet.Views"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         xmlns:services="clr-namespace:DesktopPet.Services"
         prism:ViewModelLocator.AutoWireViewModel="True"
@@ -61,10 +62,8 @@
               VerticalAlignment="Top" 
               Grid.Row="1"
               PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown">
-            <Image x:Name="petImagePlayer"
-                   gif:AnimationBehavior.RepeatBehavior="Forever"
-                   gif:AnimationBehavior.SourceUri="{Binding ImageNow}"
-                   Stretch="Fill"/>
+            <Image gif:AnimationBehavior.SourceUri="{Binding ImageNow}"
+                   gif:AnimationBehavior.RepeatBehavior="Forever"/>
         </Grid>
     </Grid>
 </Window>
