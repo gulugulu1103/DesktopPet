@@ -11,7 +11,6 @@ namespace DesktopPet.Views
         public CharactersWindow()
         {
             InitializeComponent();
-            this.petListBox.ItemsSource = (DataContext as CharactersWindowViewModel).pets;
         }
     }
 }

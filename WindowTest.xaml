@@ -12,6 +12,10 @@
     <Window.Resources>
     </Window.Resources>
     <Grid>
-        <Button Content="生成样例" Command="{Binding ButtonCommand}"/>
+        <v:FileChooseControl x:Name="FC"
+            FilePath="{Binding MyPath}"/>
+        <Button Content="jiao"
+                Click="Button_Click"
+                Command="{Binding ButtonCommand, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

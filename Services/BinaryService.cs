@@ -13,12 +13,12 @@ namespace DesktopPet.Services
     class BinaryService : IPetService
     {
         private static readonly string CurrentPath = Environment.CurrentDirectory;
-        private static readonly string BackupPath = Path.Combine(CurrentPath + "Backups");
+        private static readonly string BackupPath = Path.Combine(CurrentPath, "Backups");
         private static readonly MessagePackSerializerOptions SeializerOptions = MessagePackSerializerOptions.Standard.WithSecurity(MessagePackSecurity.UntrustedData);
 
         public List<Pet> GetAllPets()
         {
-            return GetAllPets(Path.Combine(CurrentPath, "\\Data"));
+            return GetAllPets(Path.Combine(CurrentPath, "Data"));
         }
         public List<Pet> GetAllPets(string dataPath)
         {
@@ -102,7 +102,6 @@ namespace DesktopPet.Services
             imgdic.Add(Moves.MoveDown, Properties.Resources.SamplePet_MoveDown);
             SavePetData(sealedPet);
         }
-
         public BinaryService()
         {
             if (!Directory.Exists(BackupPath))

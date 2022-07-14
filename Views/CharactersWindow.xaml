@@ -118,7 +118,8 @@
                 Background="Transparent"
                 BorderThickness="0"
                 Margin="50,0"
-                ItemTemplate="{StaticResource petListDataTemplate}">
+                ItemTemplate="{StaticResource petListDataTemplate}"
+                ItemsSource="{Binding Pets}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal" 

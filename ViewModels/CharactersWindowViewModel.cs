@@ -5,13 +5,20 @@ using DesktopPet.Views;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 
 namespace DesktopPet.ViewModels
 {
     public class CharactersWindowViewModel : BindableBase
     {
-        public List<Pet> pets = new List<Pet>();
+        private List<Pet> pets = new List<Pet>();
+        public List<Pet> Pets
+        {
+            get { return pets; }
+            set { SetProperty(ref pets, value); }
+        }
+
         private int _selectedIndex;
         public int SelectedIndex
         {
@@ -25,17 +32,33 @@ namespace DesktopPet.ViewModels
         public DelegateCommand CreateCommand { get; private set; }
         PetCreateWindow petCreateWindow { get; set; } = null;
 
+        private void OnCreateWindowClose(string obj)
+        {
+            petCreateWindow?.Close();
+            petCreateWindow = null;
+            IPetService petService = new JsonService();
+            this.Pets = petService.GetAllPets();
+        }
+
+
         public CharactersWindowViewModel(IEventAggregator _eventAggregator)
         {
             IPetService petService = new JsonService();
-            this.pets = petService.GetAllPets();
+            this.Pets = petService.GetAllPets();
+            // 事件订阅
             this.eventAggregator = _eventAggregator;
+            eventAggregator.GetEvent<WindowCloseEvent>().Subscribe(OnCreateWindowClose, filter: arg =>
+            {
+                if (arg == "PetCreateWindow") return true;
+                else return false;
+            });
+
             this.SelectedIndex = Properties.Settings.Default.SelectedPetIndex;
 
             // 应用更改按钮
             this.ApplyPetChangeCommand = new DelegateCommand(() =>
             {
-                eventAggregator.GetEvent<MainWindowPetChangedEvent>().Publish(pets[SelectedIndex]);
+                eventAggregator.GetEvent<MainWindowPetChangedEvent>().Publish(Pets[SelectedIndex]);
                 eventAggregator.GetEvent<WindowCloseEvent>().Publish("CharactersWindow");
             });
 
@@ -62,5 +85,6 @@ namespace DesktopPet.ViewModels
             });
 
         }
+
     }
 }

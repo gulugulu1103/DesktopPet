@@ -34,8 +34,7 @@ namespace DesktopPet.Services
         public Pet CreateSamplePet<T>()
         {
             // 调用Pet的构造函数
-            var constructor = typeof(T).GetConstructor(Array.Empty<Type>());
-            var samplePet = constructor.Invoke(null) as Pet;
+            var samplePet = new Pet();
             samplePet.Name = Properties.Resources.SamplePetName;
             samplePet.Description = Properties.Resources.SamplePetDescription;
             samplePet.ImageSource = new Dictionary<Moves, string?>();

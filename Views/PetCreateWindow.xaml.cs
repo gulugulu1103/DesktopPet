@@ -12,9 +12,9 @@ namespace DesktopPet.Views
             InitializeComponent();
         }
 
-        private void RichTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void IconSelector_ImageSelected(object sender, RoutedEventArgs e)
         {
-
+            (this.DataContext as ViewModels.PetCreateWindowViewModel).FileDic[Models.Moves.Icon] = this.IconSelector.Uri.LocalPath;
         }
     }
 }

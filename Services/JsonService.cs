@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Windows;
 
 namespace DesktopPet.Services
 {
@@ -104,7 +105,7 @@ namespace DesktopPet.Services
 
         public void GetSettings()
         {
-            GetSettings(ref SettingsHolder.settings, Path.Combine(CurrentPath + "Saves"));
+            GetSettings(ref SettingsHolder.settings, Path.Combine(CurrentPath, "Saves"));
         }
         public void GetSettings(string savePath)
         {
@@ -187,13 +188,13 @@ namespace DesktopPet.Services
             SavePetData(new InitService().CreateSamplePet<Pet>());
             ByteToFileConverter converter = new ByteToFileConverter();
             string defaultPetPath = Path.Combine(Environment.CurrentDirectory, $"Data\\Pets\\{Properties.Resources.SamplePetName}");
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_Icon,     Path.Combine(defaultPetPath + "Icon.jpg"));
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_Stand,    Path.Combine(defaultPetPath + "Stand.gif"));
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_LieDown,  Path.Combine(defaultPetPath + "LieDown.gif"));
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveLeft, Path.Combine(defaultPetPath + "MoveLeft.gif"));
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveRight,Path.Combine(defaultPetPath + "MoveRight.gif"));
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveUp,   Path.Combine(defaultPetPath + "MoveUp.gif"));
-            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveDown, Path.Combine(defaultPetPath + "MoveDown.gif"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_Icon,     Path.Combine(defaultPetPath, "Icon.jpg"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_Stand,    Path.Combine(defaultPetPath, "Stand.gif"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_LieDown,  Path.Combine(defaultPetPath, "LieDown.gif"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveLeft, Path.Combine(defaultPetPath, "MoveLeft.gif"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveRight,Path.Combine(defaultPetPath, "MoveRight.gif"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveUp,   Path.Combine(defaultPetPath, "MoveUp.gif"));
+            converter.ByteArrayToFile(Properties.Resources.SamplePet_MoveDown, Path.Combine(defaultPetPath, "MoveDown.gif"));
         }
 
         public JsonService()
@@ -202,7 +203,7 @@ namespace DesktopPet.Services
             {
                 BackupPath,
                 Path.Combine(CurrentPath, "Data\\Pets"),
-                Path.Combine(CurrentPath + "Saves"),
+                Path.Combine(CurrentPath, "Saves"),
             };
             foreach(string path in paths)
             {

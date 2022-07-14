@@ -1,19 +1,26 @@
 ﻿using DesktopPet.Services;
 using Prism.Commands;
 using Prism.Mvvm;
+using System.Windows;
 
 namespace DesktopPet
 {
     public class WindowTestViewModel : BindableBase
     {
-        BinaryService binaryServices = new BinaryService();
+        private string myPath;
+        public string MyPath
+        {
+            get { return myPath; }
+            set { SetProperty(ref myPath, value); }
+        }
+
         public DelegateCommand ButtonCommand { get; private set; }
 
         public WindowTestViewModel()
         {
             this.ButtonCommand = new DelegateCommand(() =>
             {
-                binaryServices.CreateDefaultPetData();
+                MessageBox.Show(MyPath);
             });
         }
     }
